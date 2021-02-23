@@ -1,0 +1,5 @@
+<view class="container">
+  <view bind:tap="onTap" class="scan-button">
+    <text class="scan-open">点击开门</text>
+  </view>
+</view>
