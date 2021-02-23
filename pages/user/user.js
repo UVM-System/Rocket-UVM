@@ -1,34 +1,11 @@
-// pages/index/index.js
+// pages/user/user.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    imagesPath: [
-      "/images/pictures/test_001.jpg",
-      "/images/pictures/test_002.jpeg",
-      "/images/pictures/test_003.jpg",
-      "/images/pictures/test_004.jpg"
-    ]
-  },
 
-  onTap: function() {
-    console.log("开门")
-    wx.request({
-      url: 'http://192.168.1.109:8000/openDoor',
-      method:'POST',
-      data:{
-        "username": "rocketeerli",
-        "password": "rocketeerli"
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function(res) {
-        console.log(res.data)
-      }
-    })
   },
 
   /**
