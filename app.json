@@ -1,14 +1,16 @@
 {
   "pages": [
+    "pages/goods/goods",
     "pages/index/index",
     "pages/cart/cart",
-    "pages/goods/goods",
-    "pages/user/user"
+    
+    "pages/user/user",
+    "pages/details/details"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#AB956D",
-    "navigationBarTitleText": "Rocket 商店",
+    "navigationBarTitleText": "Rocket 便利店",
     "navigationBarTextStyle": "white",
     "enablePullDownRefresh": true
   },

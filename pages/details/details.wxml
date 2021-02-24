@@ -1,0 +1,6 @@
+<view>
+  <text>image id: {{id}}</text>
+  <view>
+    <image src="{{img}}"></image>
+  </view>
+</view>

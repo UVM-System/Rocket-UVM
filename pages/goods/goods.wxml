@@ -1,2 +1,16 @@
-<!--pages/goods/goods.wxml-->
-<text>pages/goods/goods.wxml</text>
+<view class="container">
+  <block wx:for="{{goods}}" wx:key="{{index}}">
+    <view class="goods-list">
+      <navigator url="/pages/details/details?id={{item.id}}&img={{item.img}}">
+        <view class="img">
+          <image src="{{item.img}}"></image>
+        </view>
+        <view class="info">
+          <view class="tittle">{{item.name}}</view>
+          <view class="price">￥ {{item.price}}</view>
+          <view class="number">剩余数量 {{item.number}}</view>
+        </view>
+      </navigator>
+    </view>
+  </block>
+</view>

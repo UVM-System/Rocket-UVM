@@ -1,1 +1,17 @@
-/* pages/goods/goods.wxss */
+.goods-list {
+  margin-top: 20rpx;
+  padding: 10rpx 20rpx;
+  width: 100%;
+}
+
+navigator {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.goods-list .img {
+  height: 100rpx;
+}
+

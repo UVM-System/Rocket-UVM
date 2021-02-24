@@ -5,7 +5,69 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    goods: [
+      {
+        id: "001",
+        name: "百岁山",
+        price: 3,
+        number: 6,
+        img: "/images/goods/BSS.jpg"
+      }, {
+        id: "002",
+        name: "康师傅红茶",
+        price: 3,
+        number: 6,
+        img: "/images/goods/KSFH.jpg"
+      }, {
+        id: "003",
+        name: "维他命",
+        price: 3,
+        number: 6,
+        img: "/images/goods/LLDS.jpg"
+      }, {
+        id: "004",
+        name: "美汁源",
+        price: 3,
+        number: 6,
+        img: "/images/goods/MZY.jpg"
+      }, {
+        id: "005",
+        name: "统一CL",
+        price: 3,
+        number: 6,
+        img: "/images/goods/TYCL.jpg"
+      }, {
+        id: "006",
+        name: "统一YC",
+        price: 3,
+        number: 6,
+        img: "/images/goods/TYYC.jpg"
+      }, {
+        id: "007",
+        name: "芬达",
+        price: 3,
+        number: 6,
+        img: "/images/goods/fenda.jpg"
+      }, {
+        id: "008",
+        name: "加多宝",
+        price: 3,
+        number: 6,
+        img: "/images/goods/jiaduobao.jpg"
+      }, {
+        id: "009",
+        name: "脉动",
+        price: 3,
+        number: 6,
+        img: "/images/goods/maidong.jpg"
+      }, {
+        id: "010",
+        name: "营养快线",
+        price: 3,
+        number: 6,
+        img: "/images/goods/yingyangkuaixian.jpg"
+      }
+    ]
   },
 
   /**
