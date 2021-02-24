@@ -3,7 +3,7 @@
     <view class="goods-list">
       <navigator url="/pages/details/details?id={{item.id}}&img={{item.img}}">
         <view class="img">
-          <image src="{{item.img}}"></image>
+          <image src="{{item.img}}" mode="scaleToFill"></image>
         </view>
         <view class="info">
           <view class="tittle">{{item.name}}</view>
