@@ -1,6 +1,6 @@
 <view class="container">
   <swiper autoplay="true" circular="true" indicator-dots>
-    <swiper-item wx:key="{{index}}" wx:for="{{imagesPath}}">
+    <swiper-item wx:key="index" wx:for="{{imagesPath}}">
       <image src="{{item}}"></image>
     </swiper-item>
   </swiper>

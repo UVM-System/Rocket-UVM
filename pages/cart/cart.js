@@ -5,7 +5,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    carts: [
+      {
+        img: "/images/goods/maidong.jpg",
+        name: "脉动",
+        price: 3,
+        number: 9
+      },{
+        img: "/images/goods/BSS.jpg",
+        name: "百岁山",
+        price: 3,
+        number: 8
+      }, {
+        img: "/images/goods/KSFH.jpg",
+        name: "康师傅红茶",
+        price: 3,
+        number: 3
+      }
+    ]
   },
 
   /**

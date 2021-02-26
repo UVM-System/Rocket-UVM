@@ -1,1 +1,12 @@
-/* pages/cart/cart.wxss */
+.cart-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.scroll {
+  margin-bottom: 120rpx;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,5 +1,5 @@
 <view class="container">
-  <block wx:for="{{goods}}" wx:key="{{index}}">
+  <block wx:key="index" wx:for="{{goods}}">
     <view class="goods-list">
       <navigator url="/pages/details/details?id={{item.id}}&img={{item.img}}">
         <view class="img">
