@@ -1,2 +1,7 @@
-<!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<view>
+  <text>用户中心</text>
+  <open-data type="userAvatarUrl"></open-data>
+  <open-data type="userNickName"></open-data>
+  <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+  <view wx:else>请升级微信版本</view>
+</view>
