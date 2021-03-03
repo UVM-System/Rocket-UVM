@@ -23,6 +23,8 @@ Page({
               console.log(res.userInfo)
             }
           })
+        } else {
+          console.log("failed ...")
         }
       }
     })

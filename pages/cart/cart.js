@@ -125,7 +125,6 @@ Page({
    */
   updateTotalPrice: function() {
     var price = 0;
-    console.log(this.data.carts);
     this.data.carts.forEach(function(item) {
       price += item.price * item.number;
     });

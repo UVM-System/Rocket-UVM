@@ -1,7 +1,7 @@
-<view>
-  <text>用户中心</text>
-  <open-data type="userAvatarUrl"></open-data>
-  <open-data type="userNickName"></open-data>
-  <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
-  <view wx:else>请升级微信版本</view>
+<view class="bg">
+  <view class="head">
+    <open-data class="headIcon" type="userAvatarUrl" style="width:140rpx;height:140rpx;"></open-data>
+    <open-data class="username" type="userNickName"></open-data>
+  </view>
+  <button wx:if="{{canIUse}} && {{userInfo.avatarUrl == null}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
 </view>
