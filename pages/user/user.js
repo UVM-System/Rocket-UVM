@@ -5,29 +5,64 @@ Page({
    * 页面的初始数据
    */
   data: {
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    userInfo: null,
+    nickName: null,
+    avatarUrl: null,
+    options: [
+      {
+        option: "历史订单",
+        url: "/pages/index/index"
+      }, {
+        option: "联系客服",
+        url: "/pages/index/index"
+      }, {
+        option: "关于我们",
+        url: "/pages/index/index"
+      }
+    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let self = this;
     // 查看是否授权
     wx.getSetting({
       success (res){
-        console.log(res)
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.getUserInfo({
             success: function(res) {
-              console.log(res.userInfo)
+              self.setData({
+                userInfo: res.userInfo,
+                avatarUrl: res.userInfo.avatarUrl,
+                nickName: res.userInfo.nickName
+              })
             }
           })
         } else {
-          console.log("failed ...")
+          console.log("用户没有授权!!!")
         }
       }
     })
+  },
+
+  bindGetUserInfo: function(e) {
+    if (e.detail.userInfo){
+      this.setData({
+        userInfo: e.detail.userInfo,
+        avatarUrl: e.detail.userInfo.avatarUrl,
+        nickName: e.detail.userInfo.nickName
+      })
+    } else {
+      wx.showToast({
+        title: '授权失败',
+        icon: 'error',
+        duration: 3000
+      });
+    }
   },
 
   /**
