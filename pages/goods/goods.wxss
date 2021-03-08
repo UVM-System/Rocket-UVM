@@ -25,7 +25,7 @@ navigator {
 }
 
 .goods-list .info {
-  width: 40%;
+  width: 60%;
   height: 100%;
   font-size: 30rpx;
   margin-left: 20rpx;
