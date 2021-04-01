@@ -10,7 +10,8 @@ Page({
       "/images/pictures/test_002.jpeg",
       "/images/pictures/test_003.jpg",
       "/images/pictures/test_004.jpg"
-    ]
+    ],
+    scanImage: "/images/icons/scan_open.png"
   },
 
   onTap: function() {
@@ -85,5 +86,39 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  /**
+   * 扫码
+   */
+  scanCodeEvent: function(){
+    wx.scanCode({
+      onlyFromCamera: true,
+      success(res){
+        console.log("扫码成功：" + JSON.stringify(res))
+        console.log("开门")
+        wx.request({
+          // url: 'http://192.168.1.109:8000/openDoor',
+          url: res.result,
+          method:'POST',
+          data:{
+            "username": "rocketeerli",
+            "password": "rocketeerli"
+          },
+          header: {
+            // 'content-type': 'application/json'
+            'content-type':'application/x-www-form-urlencoded'
+          },
+          success: function(res) {
+            console.log(res.data)
+          }
+        })
+      },
+      fail(res){
+          wx.showToast({
+            title: '扫码失败！',
+          })
+          console.log("扫码失败：" + JSON.stringify(res))
+      }
+    })
   }
 })
