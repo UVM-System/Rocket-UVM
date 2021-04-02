@@ -131,11 +131,30 @@ Page({
   },
 
   toPay: function() {
-    wx.showToast({
-      title: '去结算',
-      icon: 'success',
-      duration: 3000
-    });
+    // wx.showToast({
+    //   title: '去结算',
+    //   icon: 'success',
+    //   duration: 3000
+    // });
+    wx.requestPayment(
+      {
+      'timeStamp': '',
+      'nonceStr': '',
+      'package': '',
+      'signType': 'MD5',
+      'paySign': '',
+      'success':function(res){
+        console.log(res)
+      },
+      fail: function(res) {
+        wx.showModal({
+          title:'支付提示',
+          content:'<text>',
+          showCancel: false
+        })
+      },
+      'complete':function(res){}
+      })
   },
 
   /**

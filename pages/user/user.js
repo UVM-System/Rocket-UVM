@@ -13,7 +13,7 @@ Page({
       // 注意，主页面之间的跳转不能使用 navigator
       {
         option: "历史订单",
-        url: "/pages/details/details"
+        url: "/pages/history/history"
       }, {
         option: "联系客服",
         url: "/pages/details/details"
