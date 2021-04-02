@@ -1,0 +1,39 @@
+<view class="container">
+  <block wx:key="index" wx:for="{{history}}" wx:for-item="item">
+    <view class="history_list">
+      <navigator url="/pages/details/details?id={{item.id}}&img={{item.img}}">
+        <view class="supply_info">
+            <view class="supplier">{{item.supplier}}</view>
+            <view class="state">{{item.state}}</view>
+        </view>
+        <view class="orders_info">
+          <view class="img">
+            <image src="{{item.img}}" mode="widthFix"></image>
+          </view>
+          <view class="text">
+            <view wx:for="{{item.orders}}" wx:for-item="order">
+              <view class="each_order_info">
+                <view class="name">{{order.name}}</view>
+                <view class="price_n_number">
+                  <view class="price">￥ {{order.price}}</view>
+                  <view class="number"> × {{order.number}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="time_n_price">
+          <view class="time">{{item.time}}</view>
+          <view class="total">
+            <view class="total_number">
+              共{{item.totalNumber}}件商品，合计
+            </view>
+            <view class="total_price">
+              ￥{{item.totalPrice}}
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </block>
+</view>

@@ -4,7 +4,7 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": true,
     "enhance": true,
     "postcss": true,
@@ -41,7 +41,7 @@
   },
   "compileType": "miniprogram",
   "libVersion": "2.15.0",
-  "appid": "wx7246396bd244fb02",
+  "appid": "wxf0bd3368243cbc36",
   "projectname": "Rocket-UVM",
   "debugOptions": {
     "hidedInDevtools": []
