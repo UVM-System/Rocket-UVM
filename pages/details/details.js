@@ -6,7 +6,11 @@ Page({
    */
   data: {
     id: "",
-    img: ""
+    img: "",
+    name: "",
+    price: "",
+    number: "",
+    introduction: "这是一个介绍。"
   },
 
   /**
@@ -15,7 +19,10 @@ Page({
   onLoad: function (options) {
     this.setData({
       id: options.id,
-      img: options.img
+      img: options.img,
+      name: options.name,
+      number: options.number,
+      price: options.price
     })
   },
 
