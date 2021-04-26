@@ -11,8 +11,7 @@
   background-color: white;
   border-radius: 20rpx;
   margin: 15rpx 15rpx 15rpx 15rpx;
-  padding: 25rpx;
-  height: 100%;
+  padding: 30rpx;
 }
 .name {
   font-weight: bold;
@@ -36,9 +35,9 @@
 }
 .number {
   color: darkgrey;
-  font-size: 28rpx;
+  font-size: 30rpx;
 }
 .introduction {
   color: rgb(110, 110, 110);
-  font-size: 30rpx;
+  font-size: 32rpx;
 }
