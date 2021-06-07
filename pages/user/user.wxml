@@ -1,14 +1,13 @@
 <view class="main">
   <view class="header">
-    <view wx:if="{{userInfo.avatarUrl != null}}" class="user-info">
+    <view wx:if="{{userInfo != null}}" class="user-info">
+    <!-- 已获得基本信息授权 -->
       <image src="{{avatarUrl}}" class="avatar"></image>
       <text class="nickname">{{nickName}}</text>
     </view>
-    <view wx:elif="{{canIUse && userInfo.avatarUrl == null}}" class="login">
-      <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" class="getinfo">授权登录</button>
-    </view>
-    <view wx:else class="low_version">
-      <text>请升级微信版本</text>
+    <view wx:else class="login">
+      <button wx:if="{{canIUseGetUserProfile}}" bindtap="bindGetUserProfile" class="getinfo">授权登录</button>
+      <button wx:else open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" class="getinfo">授权登录</button>
     </view>
   </view>
   <view class="option-list">
