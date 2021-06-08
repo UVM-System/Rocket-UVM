@@ -11,45 +11,45 @@ Page({
         state: "已完成",
         time: "2021-3-29 14:31:26",
         orders: [
-          {name: "得力9585彩色加厚型垃圾袋", price: 3, number: 1},
-          {name: "黑色折叠式雨伞", price: 19, number: 2},
+          {name: "脉动", price: 3, number: 9},
+          {name: "康师傅红茶", price: 3, number: 3},
         ],
-        totalPrice: 41,
-        totalNumber: 3,
-        img: "/images/test-goods/garbage-bag.jpg"
+        totalPrice: 36,
+        totalNumber: 12,
+        img: "/images/goods/maidong.jpg"
       }, {
         supplier: "商家2",
         state: "已完成",
         time: "2021-3-29 14:31:26",
         orders: [
-          {name: "得力9585彩色加厚型垃圾袋", price: 3, number: 3},
+          {name: "芬达", price: 3, number: 9},
         ],
-        totalPrice: 9, 
-        totalNumber: 6,
-        img: "/images/test-goods/umbrella.jpg"
+        totalPrice: 27, 
+        totalNumber: 9,
+        img: "/images/goods/fenda.jpg"
       }, {
         supplier: "商家3",
         state: "已退款",
         time: "2021-3-29 14:31:26",
         orders: [
-          {name: "得力9585彩色加厚型垃圾袋", price: 3, number: 1},
-          {name: "黑色折叠式雨伞", price: 19, number: 3},
-          {name: "番茄牌TOMATO事务用剪刀", price: 5, number: 2}
+          {name: "加多宝", price: 3, number: 8},
+          {name: "芬达", price: 3, number: 2},
+          {name: "康师傅红茶", price: 3, number: 2}
         ],
-        totalPrice: 70,
-        totalNumber: 6,
-        img: "/images/test-goods/garbage-bag.jpg"
+        totalPrice: 36,
+        totalNumber: 12,
+        img: "/images/goods/jiaduobao.jpg"
       }, {
         supplier: "商家4",
         state: "已退款",
         time: "2021-3-29 14:31:26",
         orders: [
-          {name: "黑色折叠式雨伞", price: 19, number: 1},
-          {name: "番茄牌TOMATO事务用剪刀", price: 5, number: 1}
+          {name: "美汁源", price: 3, number: 1},
+          {name: "康师傅红茶", price: 3, number: 1}
         ],
-        totalPrice: 24,
+        totalPrice: 6,
         totalNumber: 2,
-        img: "/images/test-goods/scissors.jpg"
+        img: "/images/goods/MZY.jpg"
       },
     ]
   },

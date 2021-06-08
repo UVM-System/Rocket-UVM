@@ -1,7 +1,7 @@
 <view class="container">
   <block wx:key="index" wx:for="{{goods}}">
     <view class="goods-list">
-      <navigator url="/pages/details/details?id={{item.id}}&img={{item.img}}">
+      <navigator url="/pages/details/details?id={{item.id}}&img={{item.img}}&name={{item.name}}&number={{item.number}}&price={{item.price}}">
         <view class="img">
           <image src="{{item.img}}" mode="scaleToFill"></image>
         </view>

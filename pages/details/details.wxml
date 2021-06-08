@@ -1,6 +1,14 @@
-<view>
-  <text>image id: {{id}}</text>
-  <view>
-    <image src="{{img}}"></image>
+<view class="container">
+  <view class="image">
+    <image src="{{img}}" class="img" mode="widthFix"></image>
+  </view>
+  <view class="text_info">
+    <view class="name">{{name}}</view>
+    <!-- <view class="underline"></view> -->
+    <view class="price_n_number">
+      <view class="price">￥ {{price}}</view>
+      <view class="number">剩余数量 {{number}}</view>
+    </view>
+    <view class="introduction">{{introduction}}</view>
   </view>
 </view>

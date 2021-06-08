@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    canIUseGetUserProfile: false, // 是否可以使用getUserProfile
     userInfo: null,
     nickName: null,
     avatarUrl: null,
@@ -29,41 +29,59 @@ Page({
    */
   onLoad: function (options) {
     let self = this;
-    // 查看是否授权
-    wx.getSetting({
-      success (res){
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success: function(res) {
-              self.setData({
-                userInfo: res.userInfo,
-                avatarUrl: res.userInfo.avatarUrl,
-                nickName: res.userInfo.nickName
-              })
-            }
-          })
-        } else {
-          console.log("用户没有授权!!!")
+    if (wx.getUserProfile) {
+      this.setData({
+        canIUseGetUserProfile: true
+      })
+    }
+  },
+  
+  // 用户授权、登录；新版本推荐使用getUserProfile
+  bindGetUserProfile: function(e){
+    wx.getUserProfile({
+      // 授权显示用户基本信息
+      desc: '授权展示用户信息',
+      success: (res) => {
+        console.log(res),
+        this.setData({
+          userInfo: res.userInfo,
+          avatarUrl: res.userInfo.avatarUrl,
+          nickName: res.userInfo.nickName
+        });
+        wx.login({
+          // 获取code，发送到后台，并接收用户ID
+          success: function(res) {
+          // 将code发送到后端，并获取用户id
+          if(res.code){
+            wx.request({
+              url: 'http://127.0.0.1:8000',
+              data: {
+                code: res.code
+              },
+              success: function(res){
+                // fail处理不了404错误，用code来判断
+                if(res.code == 1){
+                  // 把用户ID存入本地
+                  wx.setStorageSync('uvmUserId', res.id)
+                }else{
+                  // 后端登录失败
+                  console.log("后端登录失败")
+                }
+              },
+            });
+          }
         }
+        })
       }
     })
   },
 
   bindGetUserInfo: function(e) {
-    if (e.detail.userInfo){
-      this.setData({
-        userInfo: e.detail.userInfo,
-        avatarUrl: e.detail.userInfo.avatarUrl,
-        nickName: e.detail.userInfo.nickName
-      })
-    } else {
-      wx.showToast({
-        title: '授权失败',
-        icon: 'error',
-        duration: 3000
-      });
-    }
+    this.setData({
+      userInfo: e.detail.userInfo,
+      avatarUrl: e.detail.userInfo.avatarUrl,
+      nickName: e.detail.userInfo.nickName
+    });    
   },
 
   /**

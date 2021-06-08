@@ -1,7 +1,7 @@
 <view class="container">
   <block wx:key="index" wx:for="{{history}}" wx:for-item="item">
     <view class="history_list">
-      <navigator url="/pages/details/details?id={{item.id}}&img={{item.img}}">
+      <navigator>
         <view class="supply_info">
             <view class="supplier">{{item.supplier}}</view>
             <view class="state">{{item.state}}</view>

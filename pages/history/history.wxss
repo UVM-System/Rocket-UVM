@@ -22,9 +22,10 @@
   display: flex;
   flex-direction: row;
   margin-top: 30rpx;
+  align-items: flex-start;
 }
 .img {
-  width: 15%;
+  width: 20%;
   margin-left: 20rpx;
 }
 .img image {
@@ -33,7 +34,7 @@
 }
 .text {
   margin-left: 40rpx;
-  width: 80%;
+  width: 75%;
   height: 100%;
 }
 .each_order_info {
