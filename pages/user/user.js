@@ -10,15 +10,16 @@ Page({
     nickName: null,
     avatarUrl: null,
     options: [
+      // 注意，主页面之间的跳转不能使用 navigator
       {
         option: "历史订单",
         url: "/pages/history/history", 
       }, {
         option: "联系客服",
-        url: "/pages/index/index"
+        url: "/pages/details/details"
       }, {
         option: "关于我们",
-        url: "/pages/index/index"
+        url: "/pages/details/details"
       }
     ]
   },
