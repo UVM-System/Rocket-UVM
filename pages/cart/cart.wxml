@@ -16,6 +16,6 @@
   <view class="bottom-line"></view>
   <view class="bottom-content">
     <text class="total-price">合计：￥ <text class="total-price-number">{{totalMoney}}</text></text>
-    <button style="width:40%;" class="pay" bindtap="toPay">去结算</button>
+    <button style="width:40%;" class="pay" bindtap="submitOrder">去结算</button>
   </view>
 </view>

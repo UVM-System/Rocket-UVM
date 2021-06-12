@@ -1,6 +1,8 @@
-// pages/cart/cart.js
-Page({
+const utils = require("../../utils/utils.js");
 
+// pages/cart/cart.js
+require("../../utils/utils.js")
+Page({
   /**
    * 页面的初始数据
    */
@@ -53,24 +55,6 @@ Page({
         number: 3
       }
     ],
-    // carts: [
-    //   {
-    //     name: "得力9585彩色加厚型垃圾袋",
-    //     price: 3,
-    //     number: 1,
-    //     img: "/images/test-goods/garbage-bag.jpg"
-    //   }, {
-    //     name: "黑色折叠式雨伞",
-    //     price: 19,
-    //     number: 2,
-    //     img: "/images/test-goods/umbrella.jpg"
-    //   }, {
-    //     name: "番茄牌TOMATO事务用剪刀",
-    //     price: 5,
-    //     number: 1,
-    //     img: "/images/test-goods/scissors.jpg"
-    //   }
-    // ],
     totalMoney: 0
   },
 
@@ -129,15 +113,69 @@ Page({
   onShareAppMessage: function () {
 
   },
-
-  toPay: function() {
-    wx.showToast({
-      title: '去结算',
-      icon: 'success',
-      duration: 3000
-    });
+/**
+ * 基于云开发的微信支付
+ */
+// 调用云开发统一下单函数，得到支付API所需参数payment
+  submitOrder: function() {
+    wx.showLoading({
+      title: '加载中……',
+    })
+    let that = this;
+    var body = "测试订单"; // 订单支付内容
+    wx.cloud.callFunction({
+      name: "pay",
+      data: {
+        body: body,
+        orderId: "" + that.getRandomOrderId(), // 不大于32位的订单号
+        // money: that.data.totalMoney * 100, // 支付金额，接口单位是分，故*100
+        money: 0.01 * 100, // 支付金额，接口单位是分，故*100
+        nonceStr: utils.randomStr(32), // 不长于32位的随机字符串
+      },
+      success:(res) => {
+        wx.hideLoading({
+          complete: (res) => {},
+        })
+        console.log("订单提交成功！", res.result)
+        that.pay(res.result)
+      },
+      fail:(res) => {
+        wx.hideLoading({
+          complete: (res) => {},
+        })
+        console.log("订单提交失败！", res)
+      }
+    })
   },
-
+// 调用支付API
+  pay: function(payData){
+    const payment = payData.payment;
+    wx.requestPayment({
+      ...payment,
+      success:(res) => {
+        console.log("支付成功！", res)
+        // 跳转到支付成功页面
+      },
+      fail:(res) => {
+        console.log("支付失败！", res)
+        // 跳转到支付失败页面
+      }
+    })
+  },
+  /**
+   * 随机数+系统时间戳生成不重复的商品订单号
+   */
+  getRandomOrderId: function() {
+    const date = new Date();
+    let year = `${date.getFullYear()}`;
+    let month = `${date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}`: date.getMonth() + 1}`;
+    let day = `${date.getDate() < 10 ? `0${date.getDate()}`: date.getDate()}`;
+    let hour = `${date.getHours() < 10 ? `0${date.getHours()}`: date.getHours()}`;
+    let minute = `${date.getMinutes() < 10 ? `0${date.getMinutes()}`: date.getMinutes()}`;
+    let second = `${date.getSeconds() < 10 ? `0${date.getSeconds()}`: date.getSeconds()}`;
+    let formatDate = `${year}${month}${day}${hour}${minute}${second}`;
+    return `${Math.round(Math.random() * 1000)}${formatDate + Math.round(Math.random() * 89 + 100).toString()}`;
+  },
   /**
    * 更新总价
    */

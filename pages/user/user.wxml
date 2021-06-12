@@ -1,10 +1,10 @@
 <view class="main">
   <view class="header">
-    <view wx:if="{{userInfo != null}}" class="user-info">
+    <view wx:if="{{avatarUrl && nickName}}" class="user-info">
     <!-- 已获得基本信息授权 -->
       <image src="{{avatarUrl}}" class="avatar"></image>
       <text class="nickname">{{nickName}}</text>
-    </view>
+    </view> 
     <view wx:else class="login">
       <button wx:if="{{canIUseGetUserProfile}}" bindtap="bindGetUserProfile" class="getinfo">授权登录</button>
       <button wx:else open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" class="getinfo">授权登录</button>
