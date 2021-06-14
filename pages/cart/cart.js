@@ -9,47 +9,47 @@ Page({
   data: {
     carts: [
       {
-        img: "/images/goods/maidong.jpg",
+        img: "/images/goods/MD.jpg",
         name: "脉动",
         price: 3,
         number: 9
       },{
-        img: "/images/goods/KSFH.jpg",
+        img: "/images/goods/KSFBHC.jpg",
         name: "康师傅红茶",
         price: 3,
         number: 3
       }, {
-        img: "/images/goods/fenda.jpg",
+        img: "/images/goods/FANTA.jpg",
         name: "芬达",
         price: 3,
         number: 9
       },{
-        img: "/images/goods/jiaduobao.jpg",
+        img: "/images/goods/JDB.jpg",
         name: "加多宝",
         price: 3,
         number: 8
       }, {
-        img: "/images/goods/LLDS.jpg",
+        img: "/images/goods/VTMSSL.jpg",
         name: "维他命",
         price: 3,
         number: 3
       }, {
-        img: "/images/goods/MZY.jpg",
-        name: "美汁源",
+        img: "/images/goods/MZYGLC.jpg",
+        name: "美汁源果粒橙",
         price: 3,
         number: 9
       },{
-        img: "/images/goods/TYCL.jpg",
-        name: "统一CL",
+        img: "/images/goods/TYNL.jpg",
+        name: "统一AL",
         price: 3,
         number: 8
       }, {
-        img: "/images/goods/TYYC.jpg",
-        name: "统一YC",
+        img: "/images/goods/TYASM.jpg",
+        name: "统一阿萨姆",
         price: 3,
         number: 3
       }, {
-        img: "/images/goods/yingyangkuaixian.jpg",
+        img: "/images/goods/YYKX.jpg",
         name: "营养快线",
         price: 3,
         number: 3
@@ -221,11 +221,6 @@ Page({
     return `${Math.round(Math.random() * 1000)}${formatDate + Math.round(Math.random() * 89 + 100).toString()}`;
   },
   toPay: function() {
-    // wx.showToast({
-    //   title: '去结算',
-    //   icon: 'success',
-    //   duration: 3000
-    // });
     wx.requestPayment(
       {
       'timeStamp': '',
