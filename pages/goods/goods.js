@@ -17,78 +17,57 @@ Page({
         name: "康师傅红茶",
         price: 3,
         number: 6,
-        img: "/images/goods/KSFH.jpg"
+        img: "/images/goods/KSFBHC.jpg"
       }, {
         id: "003",
         name: "维他命",
         price: 3,
         number: 6,
-        img: "/images/goods/LLDS.jpg"
+        img: "/images/goods/VTMSSL.jpg"
       }, {
         id: "004",
         name: "美汁源",
         price: 3,
         number: 6,
-        img: "/images/goods/MZY.jpg"
+        img: "/images/goods/MZYGLC.jpg"
       }, {
         id: "005",
         name: "统一CL",
         price: 3,
         number: 6,
-        img: "/images/goods/TYCL.jpg"
+        img: "/images/goods/TYNL.jpg"
       }, {
         id: "006",
         name: "统一YC",
         price: 3,
         number: 6,
-        img: "/images/goods/TYYC.jpg"
+        img: "/images/goods/TYASM.jpg"
       }, {
         id: "007",
         name: "芬达",
         price: 3,
         number: 6,
-        img: "/images/goods/fenda.jpg"
+        img: "/images/goods/FANTA.jpg"
       }, {
         id: "008",
         name: "加多宝",
         price: 3,
         number: 6,
-        img: "/images/goods/jiaduobao.jpg"
+        img: "/images/goods/JDB.jpg"
       }, {
         id: "009",
         name: "脉动",
         price: 3,
         number: 6,
-        img: "/images/goods/maidong.jpg"
+        img: "/images/goods/MD.jpg"
       }, {
         id: "010",
         name: "营养快线",
         price: 3,
         number: 6,
-        img: "/images/goods/yingyangkuaixian.jpg"
+        img: "/images/goods/YYKX.jpg"
       }
     ]
-  //   goods: [
-  //     {
-  //       id: "011",
-  //       name: "得力9585彩色加厚型垃圾袋",
-  //       price: 3,
-  //       number: 6,
-  //       img: "/images/test-goods/garbage-bag.jpg"
-  //     }, {
-  //       id: "012",
-  //       name: "黑色折叠式雨伞",
-  //       price: 19,
-  //       number: 7,
-  //       img: "/images/test-goods/umbrella.jpg"
-  //     }, {
-  //       id: "013",
-  //       name: "番茄牌TOMATO事务用剪刀",
-  //       price: 5,
-  //       number: 10,
-  //       img: "/images/test-goods/scissors.jpg"
-  //     }
-  //   ]
   },
 
   /**
