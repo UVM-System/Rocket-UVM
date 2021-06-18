@@ -14,7 +14,7 @@ Page({
         img: "/images/goods/BSS.jpg"
       }, {
         id: "002",
-        name: "康师傅红茶",
+        name: "康师傅冰红茶",
         price: 3,
         number: 6,
         img: "/images/goods/KSFBHC.jpg"
@@ -26,19 +26,19 @@ Page({
         img: "/images/goods/VTMSSL.jpg"
       }, {
         id: "004",
-        name: "美汁源",
+        name: "美汁源果粒橙",
         price: 3,
         number: 6,
         img: "/images/goods/MZYGLC.jpg"
       }, {
         id: "005",
-        name: "统一CL",
+        name: "统一NL",
         price: 3,
         number: 6,
         img: "/images/goods/TYNL.jpg"
       }, {
         id: "006",
-        name: "统一YC",
+        name: "统一阿萨姆",
         price: 3,
         number: 6,
         img: "/images/goods/TYASM.jpg"

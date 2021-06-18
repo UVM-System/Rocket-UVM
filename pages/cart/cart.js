@@ -15,7 +15,7 @@ Page({
         number: 9
       },{
         img: "/images/goods/KSFBHC.jpg",
-        name: "康师傅红茶",
+        name: "康师傅冰红茶",
         price: 3,
         number: 3
       }, {
@@ -40,7 +40,7 @@ Page({
         number: 9
       },{
         img: "/images/goods/TYNL.jpg",
-        name: "统一AL",
+        name: "统一NL",
         price: 3,
         number: 8
       }, {
@@ -84,7 +84,7 @@ Page({
      * 无条件请求一次最新数据
      */
     wx.request({
-      url: "http://127.0.0.1:8000/result",
+      url: "http://10.250.164.198:8000/result",
       success: function (res) {
         self.setData({
           change: res.data.change,
@@ -100,7 +100,7 @@ Page({
     this.data.realTime = setInterval(function () {
       // 请求服务器数据
       wx.request({
-        url: "http://127.0.0.1:8000/result",
+        url: "http://10.250.164.198:8000/result",
         success: function (res) {
           self.setData({
             change: res.data.change,
