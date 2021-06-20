@@ -57,7 +57,6 @@ Page({
     ],
     totalMoney: 0,
     realTime: null,//实时数据对象(用于关闭实时刷新方法)
-    change: {},
   },
 
   /**
@@ -87,7 +86,7 @@ Page({
       url: "http://10.250.164.198:8000/result",
       success: function (res) {
         self.setData({
-          change: res.data.change,
+          carts: res.data.change,
         })
       }
     })
@@ -103,7 +102,7 @@ Page({
         url: "http://10.250.164.198:8000/result",
         success: function (res) {
           self.setData({
-            change: res.data.change,
+            carts: res.data.change,
           })
         }
       })
@@ -112,6 +111,7 @@ Page({
       wx.showToast({
         title: '数据已更新！'
       })
+      self.updateTotalPrice();
     }, 6000)//间隔时间
     // 更新数据
     this.setData({
