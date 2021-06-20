@@ -106,7 +106,6 @@ Page({
           })
         }
       })
-      console.log(self.data.change)
       // 反馈提示
       wx.showToast({
         title: '数据已更新！'
