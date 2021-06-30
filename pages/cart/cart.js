@@ -1,5 +1,5 @@
 const utils = require("../../utils/utils.js");
-
+const config = require("../../config.js");
 // pages/cart/cart.js
 require("../../utils/utils.js")
 Page({
@@ -58,6 +58,23 @@ Page({
     totalMoney: 0,
     realTime: null,//实时数据对象(用于关闭实时刷新方法)
     change: {},
+    // 订单内容
+    orderInfo:[
+      {
+        productId: 1, 
+        name: "贝奇野菜符合蔬果汁饮品", 
+        price: "4",
+        number: 4,
+        imageUrl: "./upload/img/BQYCFS.jpg",
+      },
+      {
+        productId: 2, 
+        name: "百事可乐Pepsi", 
+        price: "4.5",
+        number: 2,
+        imageUrl: "./upload/img/BSKL.jpg",
+      },
+    ]
   },
 
   /**
@@ -167,11 +184,12 @@ Page({
     })
     let that = this;
     var body = "测试订单"; // 订单支付内容
+    var orderId = that.getRandomOrderId();
     wx.cloud.callFunction({
       name: "pay",
       data: {
         body: body,
-        orderId: "" + that.getRandomOrderId(), // 不大于32位的订单号
+        orderId: "" + orderId, // 不大于32位的商户内部订单号
         // money: that.data.totalMoney * 100, // 支付金额，接口单位是分，故*100
         money: 0.01 * 100, // 支付金额，接口单位是分，故*100
         nonceStr: utils.randomStr(32), // 不长于32位的随机字符串
@@ -181,7 +199,7 @@ Page({
           complete: (res) => {},
         })
         console.log("订单提交成功！", res.result)
-        that.pay(res.result)
+        that.pay(res.result, orderId)
       },
       fail:(res) => {
         wx.hideLoading({
@@ -191,16 +209,93 @@ Page({
       }
     })
   },
+  // 添加订单测试
+  addOrderTest: function(orderId){
+    var orderContent = "";
+    var len = this.data.orderInfo.length;
+    this.data.orderInfo.forEach(function(item, index){
+      orderContent += item.productId + "|" + item.number + item.price + item.name;
+      if(index!=(len-1)){
+        orderContent += "|";
+      }
+    });
+    var totalMoney = this.data.totalMoney;
+    var userId = 1;
+    var machineId = 1;
+    var businessId = 1;
+    console.log("orderContent: ", orderContent, " totalMoney: ",totalMoney)
+    wx.request({
+      url: config.baseUrl + '/order/add',
+      method: 'POST',
+      data: {
+        // 订单号、内容、总价、订单状态、用户&商家&售货柜ID
+        OrderNumber: "" + orderId,
+        OrderContent: orderContent,
+        TotalPrice: totalMoney,
+        UserId: userId, 
+        MachineId: machineId, 
+        BusinessId: businessId,
+        Status: true // 已完成
+      },
+      header: {
+        "Content-Type": "application/json",
+      },
+      success: () => {
+        console.log("保存订单成功！")
+      },
+      fail: () => {
+        console.log("保存订单失败！")
+      }
+    })
+  },
 // 调用支付API
-  pay: function(payData){
+  pay: function(payData, orderId){
     const payment = payData.payment;
+    var orderContent = "";
+    var len = this.data.orderInfo.length;
+    this.data.orderInfo.forEach(function(item, index){
+      orderContent += item.productId + "|" + item.number + item.price + item.name;
+      if(index!=(len-1)){
+        orderContent += "|";
+      }
+    });
+    var totalMoney = this.data.totalMoney;
+    var userId = wx.getStorageSync('uvmUserId');
+    var machineId = 1;
+    var businessId = 1;
+    console.log("orderContent: ", orderContent, " totalMoney: ",totalMoney)
     wx.requestPayment({
       ...payment,
       success:(res) => {
         console.log("支付成功！", res)
+        // 保存订单
+        wx.request({
+          url: config.baseUrl + '/order/add',
+          method: 'POST',
+          data: {
+            // 订单号、内容、总价、订单状态、用户&商家&售货柜ID
+            OrderNumber: "" + orderId,
+            OrderContent: orderContent,
+            TotalPrice: totalMoney,
+            UserId: userId, 
+            MachineId: machineId, 
+            BusinessId: businessId,
+            Status: true // 已完成
+          },
+          header: {
+            "Content-Type": "application/json",
+          },
+          success: () => {
+            console.log("保存订单成功！")
+          },
+          fail: () => {
+            console.log("保存订单失败！")
+          }
+        })    
         // 跳转到支付成功页面
       },
       fail:(res) => {
+        console.log(payment)
         console.log("支付失败！", res)
         // 跳转到支付失败页面
       }

@@ -1,3 +1,4 @@
+const config = require("../../config.js");
 
 // pages/user/user.js
 Page({
@@ -16,10 +17,10 @@ Page({
         url: "/pages/history/history", 
       }, {
         option: "联系客服",
-        url: "/pages/details/details"
+        url: "/pages/user/user"
       }, {
         option: "关于我们",
-        url: "/pages/details/details"
+        url: "/pages/user/user"
       }
     ]
   },
@@ -31,8 +32,8 @@ login: function() {
   if(wx.getStorageSync('hasAuth')){
     var userId = wx.getStorageSync('uvmUserId');
     wx.request({
-      url: 'http://127.0.0.1:8000/user/getUserInfo',
-      method: 'POST',
+      url: config.baseUrl + '/getUserInfo',
+      method: 'GET',
       header: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
@@ -65,17 +66,13 @@ bindGetUserProfile: function(e){
       wx.setStorageSync('hasAuth', 1);
       var avatarUrl = res.userInfo.avatarUrl;
       var nickName = res.userInfo.nickName;
-      this.setData({
-        avatarUrl: avatarUrl,
-        nickName: nickName
-      });
       wx.login({
         // 用户登录：将code和用户信息发送到后台，接收用户ID
-        success: function(res) {
+        success: res =>  {
         console.log(res.code)
         if(res.code){
           wx.request({
-            url: 'http://127.0.0.1:8000/user/wxLogin',
+            url: config.baseUrl + '/wxLogin',
             method: 'POST',
             header: {
               "Content-Type": "application/x-www-form-urlencoded"
@@ -85,14 +82,22 @@ bindGetUserProfile: function(e){
               nickName: nickName,
               avatarUrl: avatarUrl
             },
-            success: function(res){
+            success: res => {
               console.log(res)
               // fail处理不了404错误，用code来判断
               if(res.data.code == 1){
                 // 把用户ID存入本地
                 wx.setStorageSync('uvmUserId', res.data.data.id)
+                this.setData({
+                  avatarUrl: avatarUrl,
+                  nickName: nickName
+                });          
               }else{
                 // 后端登录失败
+                wx.showToast({
+                  title: '登录失败',
+                  icon: 'none'
+                })
                 console.log("后端登录失败")
               }
             }
@@ -110,17 +115,13 @@ bindGetUserInfo: function(e) {
   wx.setStorageSync('hasAuth', 1);
   var avatarUrl = e.detail.userInfo.avatarUrl;
   var nickName = e.detail.userInfo.nickName;
-  this.setData({
-    avatarUrl: avatarUrl,
-    nickName: nickName
-  });    
   wx.login({
     // 用户登录：将code和用户信息发送到后台，接收用户ID
-    success: function(res) {
+    success: res => {
     console.log(res.code)
     if(res.code){
       wx.request({
-        url: 'http://127.0.0.1:8000/user/wxLogin',
+        url: config.baseUrl + '/wxLogin',
         method: 'POST',
         header: {
           "Content-Type": "application/x-www-form-urlencoded"
@@ -130,14 +131,22 @@ bindGetUserInfo: function(e) {
           nickName: nickName,
           avatarUrl: avatarUrl
         },
-        success: function(res){
+        success: res => {
           console.log(res)
           // fail处理不了404错误，用code来判断
           if(res.data.code == 1){
             // 把用户ID存入本地
             wx.setStorageSync('uvmUserId', res.data.data.id)
+            this.setData({
+              avatarUrl: avatarUrl,
+              nickName: nickName
+            });    
           }else{
             // 后端登录失败
+            wx.showToast({
+              title: '登录失败',
+              icon: 'none'
+            })
             console.log("后端登录失败")
           }
         },

@@ -10,7 +10,10 @@ Page({
     name: "",
     price: "",
     number: "",
-    introduction: "这是一个介绍。"
+    info: "",
+
+    imgDownloadPath:  "http://127.0.0.1:8000/product/image/download?url=",
+    imgTsValue: "", // 请求url一致时图片会被小程序缓存，无法及时更新；故添加一个时间戳参数
   },
 
   /**
@@ -18,11 +21,13 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
+      imgTsValue: "&ts=" + new Date().getTime(), // 获取当前时间戳
       id: options.id,
       img: options.img,
       name: options.name,
       number: options.number,
-      price: options.price
+      price: options.price,
+      info: options.info
     })
   },
 
