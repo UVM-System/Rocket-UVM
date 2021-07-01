@@ -57,6 +57,7 @@ Page({
     ],
     totalMoney: 0,
     realTime: null,//实时数据对象(用于关闭实时刷新方法)
+<<<<<<< HEAD
     change: {},
     // 订单内容
     orderInfo:[
@@ -75,6 +76,8 @@ Page({
         imageUrl: "./upload/img/BSKL.jpg",
       },
     ]
+=======
+>>>>>>> master
   },
 
   /**
