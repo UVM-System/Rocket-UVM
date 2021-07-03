@@ -68,14 +68,6 @@ Page({
       data: {
         'UserId': userId
       },
-      success: res => {
-        console.log(res)
-        // 获得订单信息
-        var rawOrders = res.data.data.orders,
-      },
-      fail: res => {
-
-      }
     })
   },
 

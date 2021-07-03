@@ -7,77 +7,81 @@ Page({
    * 页面的初始数据
    */
   data: {
-    carts: [
-      {
-        img: "/images/goods/MD.jpg",
-        name: "脉动",
-        price: 3,
-        number: 9
-      },{
-        img: "/images/goods/KSFBHC.jpg",
-        name: "康师傅冰红茶",
-        price: 3,
-        number: 3
-      }, {
-        img: "/images/goods/FANTA.jpg",
-        name: "芬达",
-        price: 3,
-        number: 9
-      },{
-        img: "/images/goods/JDB.jpg",
-        name: "加多宝",
-        price: 3,
-        number: 8
-      }, {
-        img: "/images/goods/VTMSSL.jpg",
-        name: "维他命",
-        price: 3,
-        number: 3
-      }, {
-        img: "/images/goods/MZYGLC.jpg",
-        name: "美汁源果粒橙",
-        price: 3,
-        number: 9
-      },{
-        img: "/images/goods/TYNL.jpg",
-        name: "统一NL",
-        price: 3,
-        number: 8
-      }, {
-        img: "/images/goods/TYASM.jpg",
-        name: "统一阿萨姆",
-        price: 3,
-        number: 3
-      }, {
-        img: "/images/goods/YYKX.jpg",
-        name: "营养快线",
-        price: 3,
-        number: 3
-      }
-    ],
+    // carts: [
+    //   {
+    //     img: "/images/goods/MD.jpg",
+    //     name: "脉动",
+    //     price: 3,
+    //     number: 9
+    //   },{
+    //     img: "/images/goods/KSFBHC.jpg",
+    //     name: "康师傅冰红茶",
+    //     price: 3,
+    //     number: 3
+    //   }, {
+    //     img: "/images/goods/FANTA.jpg",
+    //     name: "芬达",
+    //     price: 3,
+    //     number: 9
+    //   },{
+    //     img: "/images/goods/JDB.jpg",
+    //     name: "加多宝",
+    //     price: 3,
+    //     number: 8
+    //   }, {
+    //     img: "/images/goods/VTMSSL.jpg",
+    //     name: "维他命",
+    //     price: 3,
+    //     number: 3
+    //   }, {
+    //     img: "/images/goods/MZYGLC.jpg",
+    //     name: "美汁源果粒橙",
+    //     price: 3,
+    //     number: 9
+    //   },{
+    //     img: "/images/goods/TYNL.jpg",
+    //     name: "统一NL",
+    //     price: 3,
+    //     number: 8
+    //   }, {
+    //     img: "/images/goods/TYASM.jpg",
+    //     name: "统一阿萨姆",
+    //     price: 3,
+    //     number: 3
+    //   }, {
+    //     img: "/images/goods/YYKX.jpg",
+    //     name: "营养快线",
+    //     price: 3,
+    //     number: 3
+    //   }
+    // ],
     totalMoney: 0,
     realTime: null,//实时数据对象(用于关闭实时刷新方法)
-<<<<<<< HEAD
     change: {},
     // 订单内容
-    orderInfo:[
+    carts:[
       {
         productId: 1, 
         name: "贝奇野菜符合蔬果汁饮品", 
-        price: "4",
-        number: 4,
+        price: 4,
+        number: 2,
         imageUrl: "./upload/img/BQYCFS.jpg",
       },
       {
         productId: 2, 
         name: "百事可乐Pepsi", 
-        price: "4.5",
-        number: 2,
+        price: 4.5,
+        number: 6,
         imageUrl: "./upload/img/BSKL.jpg",
       },
+      {
+        productId: 4, 
+        name: "百怡百香果饮料", 
+        price: 5.5,
+        number: 4,
+        imageUrl: "./upload/img/BYBXG.jpg",
+      }
     ]
-=======
->>>>>>> master
   },
 
   /**
@@ -182,6 +186,11 @@ Page({
  */
 // 调用云开发统一下单函数，得到支付API所需参数payment
   submitOrder: function() {
+    // 测试订单添加
+    this.addOrderTest(this.getRandomOrderId());
+    // 测试订单添加
+
+    
     wx.showLoading({
       title: '加载中……',
     })
@@ -214,31 +223,29 @@ Page({
   },
   // 添加订单测试
   addOrderTest: function(orderId){
-    var orderContent = "";
-    var len = this.data.orderInfo.length;
-    this.data.orderInfo.forEach(function(item, index){
-      orderContent += item.productId + "|" + item.number + item.price + item.name;
-      if(index!=(len-1)){
-        orderContent += "|";
-      }
-    });
     var totalMoney = this.data.totalMoney;
     var userId = 1;
     var machineId = 1;
     var businessId = 1;
-    console.log("orderContent: ", orderContent, " totalMoney: ",totalMoney)
+    var carts = this.data.carts;
+    var totalNumber = 0;
+    carts.forEach(function(item){
+      totalNumber += item.number
+    });
+    console.log("totalNumber: ", totalNumber, " totalPrice: ", totalMoney)
     wx.request({
       url: config.baseUrl + '/order/add',
       method: 'POST',
       data: {
         // 订单号、内容、总价、订单状态、用户&商家&售货柜ID
         OrderNumber: "" + orderId,
-        OrderContent: orderContent,
-        TotalPrice: totalMoney,
+        OrderContent: JSON.stringify(carts),
+        Price: totalMoney,
+        Number: totalNumber,
         UserId: userId, 
         MachineId: machineId, 
         BusinessId: businessId,
-        Status: true // 已完成
+        Status: true,// 已完成
       },
       header: {
         "Content-Type": "application/json",
@@ -254,19 +261,16 @@ Page({
 // 调用支付API
   pay: function(payData, orderId){
     const payment = payData.payment;
-    var orderContent = "";
-    var len = this.data.orderInfo.length;
-    this.data.orderInfo.forEach(function(item, index){
-      orderContent += item.productId + "|" + item.number + item.price + item.name;
-      if(index!=(len-1)){
-        orderContent += "|";
-      }
-    });
     var totalMoney = this.data.totalMoney;
-    var userId = wx.getStorageSync('uvmUserId');
+    var userId = 1;
     var machineId = 1;
     var businessId = 1;
-    console.log("orderContent: ", orderContent, " totalMoney: ",totalMoney)
+    var carts = this.data.carts;
+    var totalNumber = 0;
+    carts.forEach(function(item){
+      totalNumber += item.number
+    });
+    console.log("totalNumber: ", totalNumber, " totalPrice: ", totalMoney)
     wx.requestPayment({
       ...payment,
       success:(res) => {
@@ -278,12 +282,13 @@ Page({
           data: {
             // 订单号、内容、总价、订单状态、用户&商家&售货柜ID
             OrderNumber: "" + orderId,
-            OrderContent: orderContent,
-            TotalPrice: totalMoney,
+            OrderContent: JSON.stringify(carts),
+            Price: totalMoney,
+            Number: totalNumber,
             UserId: userId, 
             MachineId: machineId, 
             BusinessId: businessId,
-            Status: true // 已完成
+            Status: true,// 已完成
           },
           header: {
             "Content-Type": "application/json",
