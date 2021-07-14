@@ -67,6 +67,7 @@ Page({
         self.setData({
           carts: res.data.change,
         })
+        self.updateTotalPrice();
       }
     })
     /**
@@ -303,9 +304,11 @@ Page({
    */
   updateTotalPrice: function() {
     var price = 0;
-    this.data.carts.forEach(function(item) {
-      price += item.price * item.number;
-    });
+    if (this.data.carts) {
+      this.data.carts.forEach(function(item) {
+        price += item.price * item.number;
+      });
+    }
     this.setData({
       totalMoney: price
     })
