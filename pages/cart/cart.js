@@ -7,54 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // carts: [
-    //   {
-    //     img: "/images/goods/MD.jpg",
-    //     name: "脉动",
-    //     price: 3,
-    //     number: 9
-    //   },{
-    //     img: "/images/goods/KSFBHC.jpg",
-    //     name: "康师傅冰红茶",
-    //     price: 3,
-    //     number: 3
-    //   }, {
-    //     img: "/images/goods/FANTA.jpg",
-    //     name: "芬达",
-    //     price: 3,
-    //     number: 9
-    //   },{
-    //     img: "/images/goods/JDB.jpg",
-    //     name: "加多宝",
-    //     price: 3,
-    //     number: 8
-    //   }, {
-    //     img: "/images/goods/VTMSSL.jpg",
-    //     name: "维他命",
-    //     price: 3,
-    //     number: 3
-    //   }, {
-    //     img: "/images/goods/MZYGLC.jpg",
-    //     name: "美汁源果粒橙",
-    //     price: 3,
-    //     number: 9
-    //   },{
-    //     img: "/images/goods/TYNL.jpg",
-    //     name: "统一NL",
-    //     price: 3,
-    //     number: 8
-    //   }, {
-    //     img: "/images/goods/TYASM.jpg",
-    //     name: "统一阿萨姆",
-    //     price: 3,
-    //     number: 3
-    //   }, {
-    //     img: "/images/goods/YYKX.jpg",
-    //     name: "营养快线",
-    //     price: 3,
-    //     number: 3
-    //   }
-    // ],
+    imgDownloadPath:  config.ImageDownloadUrl,
+
     totalMoney: 0,
     realTime: null,//实时数据对象(用于关闭实时刷新方法)
     change: {},
@@ -62,23 +16,23 @@ Page({
     carts:[
       {
         productId: 1, 
-        name: "贝奇野菜符合蔬果汁饮品", 
+        name: "贝奇野菜复合蔬果汁饮品", 
         price: 4,
-        number: 2,
+        number: 5,
         imageUrl: "./upload/img/BQYCFS.jpg",
       },
       {
         productId: 2, 
         name: "百事可乐Pepsi", 
         price: 4.5,
-        number: 6,
+        number: 3,
         imageUrl: "./upload/img/BSKL.jpg",
       },
       {
         productId: 4, 
         name: "百怡百香果饮料", 
         price: 5.5,
-        number: 4,
+        number: 3,
         imageUrl: "./upload/img/BYBXG.jpg",
       }
     ]

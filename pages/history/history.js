@@ -6,69 +6,45 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgDownloadPath:  config.ImageDownloadUrl,
     orders: [],
-    history: [
-      {
-        supplier: "商家1",
-        state: "已完成",
-        time: "2021-3-29 14:31:26",
-        orders: [
-          {name: "脉动", price: 3, number: 9},
-          {name: "康师傅红茶", price: 3, number: 3},
-        ],
-        totalPrice: 36,
-        totalNumber: 12,
-        img: "/images/goods/maidong.jpg"
-      }, {
-        supplier: "商家2",
-        state: "已完成",
-        time: "2021-3-29 14:31:26",
-        orders: [
-          {name: "芬达", price: 3, number: 9},
-        ],
-        totalPrice: 27, 
-        totalNumber: 9,
-        img: "/images/goods/fenda.jpg"
-      }, {
-        supplier: "商家3",
-        state: "已退款",
-        time: "2021-3-29 14:31:26",
-        orders: [
-          {name: "加多宝", price: 3, number: 8},
-          {name: "芬达", price: 3, number: 2},
-          {name: "康师傅红茶", price: 3, number: 2}
-        ],
-        totalPrice: 36,
-        totalNumber: 12,
-        img: "/images/goods/jiaduobao.jpg"
-      }, {
-        supplier: "商家4",
-        state: "已退款",
-        time: "2021-3-29 14:31:26",
-        orders: [
-          {name: "美汁源", price: 3, number: 1},
-          {name: "康师傅红茶", price: 3, number: 1}
-        ],
-        totalPrice: 6,
-        totalNumber: 2,
-        img: "/images/goods/MZY.jpg"
-      },
-    ]
   },
+  /**
+   * 根据用户Id查询历史订单
+   */
+  getOrderList: function() {
+    var userId = wx.getStorageSync('uvmUserId');
+    wx.request({
+      url: config.baseUrl + '/order/orderList',
+      method: 'GET', 
+      data: {
+        UserId: userId
+      },
+      success: res => {
+        console.log(res);
+        var orders = res.data.data.orders;
+        // OrderContent反序列化
+        orders.forEach(function(item){
+          item.order_content = JSON.parse(item.order_content)
+        })
+        this.setData({
+          orders: orders.reverse() // 时间倒序，新的订单在上面
+        })
+        console.log(orders)
 
+      },
+      fail: res => {
+        console.log(res)
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     // 根据userId请求历史订单
     var userId = wx.getStorageSync('uvmUserId');
-    wx.request({
-      url: config.baseUrl + "/order/orderList",
-      method: 'GET', 
-      data: {
-        'UserId': userId
-      },
-    })
+    this.getOrderList();
   },
 
   /**

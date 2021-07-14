@@ -40,11 +40,15 @@ login: function() {
       data: {
         userId: userId
       },
-      success: (res) => {
-        this.setData({
-          avatarUrl: res.data.data.avatarUrl,
-          nickName: res.data.data.nickName
-        });
+      success: res => {
+        if(res.data.code == 1){
+          // 成功读取用户数据
+          this.setData({
+            avatarUrl: res.data.data.avatarUrl,
+            nickName: res.data.data.nickName
+          });
+        }
+        // 读取用户数据失败，仍然需要授权登录
       },
       fail: () => [
         console.log("读取后台用户信息失败！")
