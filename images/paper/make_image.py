@@ -2,7 +2,7 @@ import PIL.Image as Image
 from PIL import ImageFile
 import os
  
-IMAGES_PATH = './images/goods/'  # 图片集地址
+IMAGES_PATH = '../goods/'  # 图片集地址
 IMAGES_FORMAT = ['.jpg', '.JPG']  # 图片格式
 IMAGE_SIZE = 256  # 每张小图片的大小
 IMAGE_ROW = 10  # 图片间隔，也就是合并成一张图后，一共有几行
